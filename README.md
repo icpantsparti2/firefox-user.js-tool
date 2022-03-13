@@ -2,11 +2,11 @@
 
 Interactive view, compare, and more for Firefox user.js (eg arkenfox/user.js) + about:config functions
 
-[Open userjs-tool.html on-line (github.io)](https://icpantsparti.github.io/firefox-user.js-tool/userjs-tool.html)
+[Open userjs-tool.html on-line (github.io)](https://icpantsparti2.github.io/firefox-user.js-tool/userjs-tool.html)
 
-[View the current <i>arkenfox user.js</i>* in a table (github.io)](https://icpantsparti.github.io/firefox-user.js-tool/userjs-tool.html?at)
+[View the current <i>arkenfox user.js</i>* in a table (github.io)](https://icpantsparti2.github.io/firefox-user.js-tool/userjs-tool.html?at)
 
-[Functions to get more out of about:config (eg: find, filter, list, save to file, etc)](https://raw.githubusercontent.com/icpantsparti/firefox-user.js-tool/master/userjs-tool-aboutconfig-functions.js)
+[Functions to get more out of about:config (eg: find, filter, list, save to file, etc)](https://raw.githubusercontent.com/icpantsparti2/firefox-user.js-tool/master/userjs-tool-aboutconfig-functions.js)
 
 > > > \*Note: the excellent `arkenfox user.js` is by other developers at:<br>
 > > > [arkenfox user.js home](https://github.com/arkenfox/user.js) / [arkenfox user.js issues](https://github.com/arkenfox/user.js/issues?q=sort%3Aupdated-desc) / [arkenfox user.js wiki](https://github.com/arkenfox/user.js/wiki)
@@ -23,7 +23,7 @@ Display a Mozilla Firefox user.js settings file contents in your Firefox browser
 * load/save, drag/drop, or copy/paste user.js files (can load from some on-line URLs too)
 * functions for find (filter/list)/reset/set on about:config Web Console (Firefox/forks/Thunderbird/SeaMonkey)
 * single .html file (HTML/CSS/JavaScript) with no external dependency
-* open [userjs-tool.html on-line](https://icpantsparti.github.io/firefox-user.js-tool/userjs-tool.html) or save for off-line use
+* open [userjs-tool.html on-line](https://icpantsparti2.github.io/firefox-user.js-tool/userjs-tool.html) or save for off-line use
 
 (*arkenfox/user.js inspired.  Please visit [arkenfox/user.js](https://github.com/arkenfox/user.js) and read their info on [arkenfox/user.js/wiki](https://github.com/arkenfox/user.js/wiki). They also have nice scripts for append/clean/troubleshoot.)
 
@@ -37,7 +37,7 @@ Disclaimer: Use with care at your own risk, and verify any results
 
 <details><summary><b>(Optional) How to save and open <code>userjs-tool.html</code> off-line</b></summary><br>
 
-* Open [the raw text/html file](https://raw.githubusercontent.com/icpantsparti/firefox-user.js-tool/master/userjs-tool.html) in a browser tab
+* Open [the raw text/html file](https://raw.githubusercontent.com/icpantsparti2/firefox-user.js-tool/master/userjs-tool.html) in a browser tab
 * Right click within that page and "Save Page As..."
 * Open the saved `userjs-tool.html` file with your Firefox browser  
 (you can drag and drop it from your Downloads folder into a new tab)
@@ -56,11 +56,11 @@ Disclaimer: Use with care at your own risk, and verify any results
 
 * You can do these (and more) from the interface, or by using URL parameters:
   
-    * [View the current arkenfox user.js (github.io)](https://icpantsparti.github.io/firefox-user.js-tool/userjs-tool.html?av)
+    * [View the current arkenfox user.js (github.io)](https://icpantsparti2.github.io/firefox-user.js-tool/userjs-tool.html?av)
 
-    * [View the current arkenfox user.js in a table (github.io)](https://icpantsparti.github.io/firefox-user.js-tool/userjs-tool.html?at)
+    * [View the current arkenfox user.js in a table (github.io)](https://icpantsparti2.github.io/firefox-user.js-tool/userjs-tool.html?at)
   
-    * Load and view a user.js URL: [https://icpantsparti.github.io/firefox-user.js-tool/userjs-tool.html?action=view1&load1=%68ttps://raw.githubusercontent.com/arkenfox/user.js/master/user.js](https://icpantsparti.github.io/firefox-user.js-tool/userjs-tool.html?action=view1&load1=%68ttps://raw.githubusercontent.com/arkenfox/user.js/master/user.js)
+    * Load and view a user.js URL: [https://icpantsparti2.github.io/firefox-user.js-tool/userjs-tool.html?action=view1&load1=%68ttps://raw.githubusercontent.com/arkenfox/user.js/master/user.js](https://icpantsparti2.github.io/firefox-user.js-tool/userjs-tool.html?action=view1&load1=%68ttps://raw.githubusercontent.com/arkenfox/user.js/master/user.js)
 
 ----
 
