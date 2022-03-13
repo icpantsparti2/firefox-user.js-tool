@@ -2,10 +2,10 @@
 // user preferences and values: find (filter/list/save/defaults)/reset/set
 //
 // Name         : userjs-tool-aboutconfig-functions.js
-// Project      : https://github.com/icpantsparti/firefox-user.js-tool
-// Version      : 2021.03.11 (alpha/experimental)
-// File/Update  : https://raw.githubusercontent.com/icpantsparti/firefox-user.js-tool/master/userjs-tool-aboutconfig-functions.js
-// License (MIT): https://raw.githubusercontent.com/icpantsparti/firefox-user.js-tool/master/LICENSE
+// Project      : https://github.com/icpantsparti2/firefox-user.js-tool
+// Version      : 2022-03-12 (2021.03.11 forked) (alpha/experimental)
+// File/Update  : https://raw.githubusercontent.com/icpantsparti2/firefox-user.js-tool/master/userjs-tool-aboutconfig-functions.js
+// License (MIT): https://raw.githubusercontent.com/icpantsparti2/firefox-user.js-tool/master/LICENSE
 // Disclaimer   : Use with care at your own risk, and verify any results
 //
 // -------------------------------------------------------------------------------
