@@ -3,7 +3,7 @@
 //
 // Name         : userjs-tool-aboutconfig-functions.js
 // Project      : https://github.com/icpantsparti2/firefox-user.js-tool
-// Version      : 2022-03-12 (2021.03.11 forked) (alpha/experimental)
+// Version      : 2022.03.15 (2021.03.11) (alpha/experimental)
 // File/Update  : https://raw.githubusercontent.com/icpantsparti2/firefox-user.js-tool/master/userjs-tool-aboutconfig-functions.js
 // License (MIT): https://raw.githubusercontent.com/icpantsparti2/firefox-user.js-tool/master/LICENSE
 // Disclaimer   : Use with care at your own risk, and verify any results
@@ -101,6 +101,9 @@
 // -------------------------------------------------
 // Acknowledgments (this is based on info/code from)
 // -------------------------------------------------
+//   2022.03.12 project forked from the dormant account of
+//     https://github.com/icpantsparti and continues by the same
+//     maintainer under https://github.com/icpantsparti2
 //   https://github.com/arkenfox/user.js
 //     https://github.com/arkenfox/user.js/wiki/1.6-Firefox-Android
 //     https://github.com/arkenfox/user.js/tree/master/scratchpad-scripts
