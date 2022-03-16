@@ -1,3 +1,46 @@
+version 2022.03.15  userjs-tool.html
+
++ if html location is under "https://arkenfox.github.io/..."
+  (eg https://arkenfox.github.io/foo/bar.html) then:
+    * auto load and table view: "https://arkenfox.github.io/user.js/user.js"
+      (github.io pages will need to be enabled on both repos)
+    * use arkenfox theme (which has the same values as dark theme for now...)
+
++ table view: comments that appear after the pref (indented: "      //")
+  now included in description (instead of looking like a sub heading below)
+  (eg arkenfox section 9000)
+
+* table view: added tag indicators on end of heading rows
+  (eg arkenfox sections 4500 and 8000 have [WARNING])
+
++ table view: added hard coded tags: Y=WHY T=TEST
+  (previously these got the default * indicator used for tags not hard coded)
+
+* removed the underlines of <summary> when <details> open
+
+* table view: enable double clicking of the [+] button
+  this expands descriptions and leaves section headers collapsed
+  (a first/single click still expands all descriptions as before)
+
+* table view: changed word wrap (try not to break mid word)
+
+* [Groups]: updated references to some shortcut keys:
+  Firefox changed the shortcut hint key for "Copy Link" (was "a" now "L")
+  ie when you right click a link and the context menu appears
+
+* [a:c Functions] now version 2022.03.15
+
+
+
+
+version 2022.03.15  userjs-tool-aboutconfig-functions.js
+
+* same code as version 2021.03.11
+* updated some URLs and comments
+
+
+
+
 version 2022.03.12 (2021.03.11 forked)
 
 forked from @icpantsparti to @icpantsparti2
