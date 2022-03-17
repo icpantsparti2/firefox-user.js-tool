@@ -1,9 +1,13 @@
-version 2022.03.16  userjs-tool.html
+version 2022.03.16 / 2022.03.16.2  userjs-tool.html
 
-* edit some references in [Links] section
+* 2022.03.16: edit some references in [Links] section
   * remove: arkenfox-clear-deprecated.js
   * remove: arkenfox-clear-RFP-alternatives.js
   * rename: arkenfox-clear-removed.js to arkenfox-cleanup.js
+* 2022.03.16.2:
+  * do not display empty table view
+    re: when html location is under "https://arkenfox.github.io/..."
+    and user.js file does not fetch (an alert is already shown)
 
 
 
