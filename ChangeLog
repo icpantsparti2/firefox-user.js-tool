@@ -1,4 +1,4 @@
-version 2022.03.16 / 2022.03.16.2  userjs-tool.html
+versions 2022.03.17 2022.03.16.2 2022.03.16  userjs-tool.html
 
 * 2022.03.16: edit some references in [Links] section
   * remove: arkenfox-clear-deprecated.js
@@ -8,6 +8,11 @@ version 2022.03.16 / 2022.03.16.2  userjs-tool.html
   * do not display empty table view
     re: when html location is under "https://arkenfox.github.io/..."
     and user.js file does not fetch (an alert is already shown)
+* 2022.03.17:
+  * table view: issue: some inactive prefs were still showing when
+    hide inactive selected (re display of arkenfox section 9000)
+    solution: corrected an object key name (re code added in v2022.03.15)
+
 
 
 
