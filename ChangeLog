@@ -1,3 +1,13 @@
+version 2022.03.16  userjs-tool.html
+
+* edit some references in [Links] section
+  * remove: arkenfox-clear-deprecated.js
+  * remove: arkenfox-clear-RFP-alternatives.js
+  * rename: arkenfox-clear-removed.js to arkenfox-cleanup.js
+
+
+
+
 version 2022.03.15  userjs-tool.html
 
 + if html location is under "https://arkenfox.github.io/..."
