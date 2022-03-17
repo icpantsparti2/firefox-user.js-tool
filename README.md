@@ -1,5 +1,7 @@
 #### userjs-tool.html
 
+> This is a continuation of the project by the same maintainer (previously under @icpantsparti)
+
 Interactive view, compare, and more for Firefox user.js (eg arkenfox/user.js) + about:config functions
 
 [Open userjs-tool.html on-line (github.io)](https://icpantsparti2.github.io/firefox-user.js-tool/userjs-tool.html)
