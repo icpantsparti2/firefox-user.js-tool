@@ -1,4 +1,4 @@
-versions 2022.03.17 2022.03.16.2 2022.03.16  userjs-tool.html
+versions 2022.03.18 2022.03.17 2022.03.16.2 2022.03.16  userjs-tool.html
 
 * 2022.03.16: edit some references in [Links] section
   * remove: arkenfox-clear-deprecated.js
@@ -12,6 +12,8 @@ versions 2022.03.17 2022.03.16.2 2022.03.16  userjs-tool.html
   * table view: issue: some inactive prefs were still showing when
     hide inactive selected (re display of arkenfox section 9000)
     solution: corrected an object key name (re code added in v2022.03.15)
+* 2022.03.18:
+  + table view: added a find text option under the [Filter] button
 
 
 
