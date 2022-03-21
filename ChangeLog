@@ -1,20 +1,37 @@
-versions 2022.03.18 2022.03.17 2022.03.16.2 2022.03.16  userjs-tool.html
+version 2022.03.20  userjs-tool.html
+  * table view: improve code for comments that appear after the pref
+    (the indented: "      //")    (re "prefComment+")
+    (the code added in v2022.03.15 also distorted some tag counts - fixed)
+  * table view: improve Search (find text)
+    * rename Find Text to Search (and add an icon)
+    + show counts of text matched (alongside the option)
+    + add hidden columns to the table: so that columns are separated
+      with a space character when we search the row innerText
+      (this improves the RegExp matching eg \b word boundaries etc)
+    + allow search_text to be passed to the functions
+  + add an s= URL parameter, then when auto loading and auto displaying
+    user.js in a table a search filter can be applied
+    eg https://icpantsparti2.github.io/firefox-user.js-tool/userjs-tool.html?at&s=ocsp
+    TODO: add some examples to the help section for this
 
-* 2022.03.16: edit some references in [Links] section
-  * remove: arkenfox-clear-deprecated.js
-  * remove: arkenfox-clear-RFP-alternatives.js
-  * rename: arkenfox-clear-removed.js to arkenfox-cleanup.js
-* 2022.03.16.2:
-  * do not display empty table view
-    re: when html location is under "https://arkenfox.github.io/..."
-    and user.js file does not fetch (an alert is already shown)
+
+
+
+versions 2022.03.18 2022.03.17 2022.03.16.2 2022.03.16  userjs-tool.html
+* 2022.03.18:
+  + table view: added a find text option under the [Filter] button
 * 2022.03.17:
   * table view: issue: some inactive prefs were still showing when
     hide inactive selected (re display of arkenfox section 9000)
     solution: corrected an object key name (re code added in v2022.03.15)
-* 2022.03.18:
-  + table view: added a find text option under the [Filter] button
-
+* 2022.03.16.2:
+  * do not display empty table view
+    re: when html location is under "https://arkenfox.github.io/..."
+    and user.js file does not fetch (an alert is already shown)
+* 2022.03.16: edit some references in [Links] section
+  * remove: arkenfox-clear-deprecated.js
+  * remove: arkenfox-clear-RFP-alternatives.js
+  * rename: arkenfox-clear-removed.js to arkenfox-cleanup.js
 
 
 
@@ -52,23 +69,19 @@ version 2022.03.15  userjs-tool.html
 * [a:c Functions] now version 2022.03.15
 
 
+----------------------------------------
 
 
 version 2022.03.15  userjs-tool-aboutconfig-functions.js
-
 * same code as version 2021.03.11
 * updated some URLs and comments
 
-
-
-
 version 2022.03.12 (2021.03.11 forked)
-
-forked from @icpantsparti to @icpantsparti2
-
-the only modifications are user name and version number
+* forked from @icpantsparti to @icpantsparti2
+* the only modifications are user name and version number
 
 
+----------------------------------------
 
 
 version 2021.03.11
