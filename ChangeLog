@@ -1,4 +1,25 @@
 version 2022.03.20  userjs-tool.html
+  + add arkenfox repo mode
+    if userjs-tool.html is run from a copy.html on an arkenfox repo:
+    auto loads a file on that same repo called user.js
+    and displays in a table, with theme/style and hide parts of UI
+    (with arkenfox theme using color values from the arkenfox TZP project)
+  + add "afmode=" URL parameter (for demo/etc of the mode mentioned above)
+    (you would not usually need to specify this as the arkenfox repo mode is automatic)
+      ?afmode=off    default when html not opened from an arkenfox repo
+      ?afmode=on     default if html opened from an arkenfox repo
+      ?afmode=demo   to demo from this repo (loads main arkenfox repo user.js)
+        https://icpantsparti2.github.io/firefox-user.js-tool/userjs-tool.html?afmode=demo
+      ?afmode=test   similar to demo - but some UI not hidden
+  + table view: add an t= URL parameter for filter by tag
+  + table view: update URL box when using the filter button
+    ie to show the t= or s= parameter
+  * make default theme background darker
+
+
+
+
+version 2022.03.20  userjs-tool.html
   * table view: improve code for comments that appear after the pref
     (the indented: "      //")    (re "prefComment+")
     (the code added in v2022.03.15 also distorted some tag counts - fixed)
