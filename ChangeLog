@@ -1,4 +1,4 @@
-version 2022.03.20  userjs-tool.html
+version 2022.04.01  userjs-tool.html
   + add arkenfox repo mode
     if userjs-tool.html is run from a copy.html on an arkenfox repo:
     auto loads a file on that same repo called user.js
