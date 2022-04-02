@@ -20,7 +20,7 @@
 
     /* default theme */
     .body_default, .view_area_default, .panels_default
-                                  { background-color: #262626; /*(black)*/
+                                  { background-color: #161b22; /*(black)*/
                                                color: #b3b3b3; /*(gray)*/ }
     .controls_default             { background-color: #555555; /*DimGray*/
                                                color: #C0C0C0; /*Silver*/ }
