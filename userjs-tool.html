@@ -13,7 +13,7 @@
 
        Name         : userjs-tool.html
        Project      : https://github.com/icpantsparti2/firefox-user.js-tool
-       Version      : 2022.03.20 (alpha/experimental)
+       Version      : 2022.04.01 (alpha/experimental)
        File         : https://raw.githubusercontent.com/icpantsparti2/firefox-user.js-tool/master/userjs-tool.html
        On-line      : https://icpantsparti2.github.io/firefox-user.js-tool/userjs-tool.html
        License (MIT): https://raw.githubusercontent.com/icpantsparti2/firefox-user.js-tool/master/LICENSE
@@ -33,6 +33,8 @@
 
     // keep track of the section selected to help overcome focus loss
     var section_focus, return_to_panel;
+
+    var arkenfoxRepoMode = "";
 
   </script>
 
@@ -354,7 +356,7 @@
       height: 2.2em;
       background: #d3d3d3;
       outline: none;
-      opacity: 0.7;
+      opacity: 0.4;
       -webkit-transition: .2s;
       transition: opacity .2s;
       float: left;
@@ -421,7 +423,7 @@
 
     /* default theme */
     .body_default, .view_area_default, .panels_default
-                                  { background-color: #262626; /*(black)*/
+                                  { background-color: #161b22; /*(black)*/
                                                color: #b3b3b3; /*(gray)*/ }
     .controls_default             { background-color: #555555; /*DimGray*/
                                                color: #C0C0C0; /*Silver*/ }
@@ -445,7 +447,7 @@
 
     /* dark theme */
     .body_dark, .view_area_dark, .panels_dark
-                                  { background-color: #262626; /*(black)*/
+                                  { background-color: #161b22; /*(black)*/
                                                color: #b3b3b3; /*(gray)*/ }
     .controls_dark                { background-color: #555555; /*DimGray*/
                                                color: #C0C0C0; /*Silver*/ }
@@ -541,27 +543,27 @@
 
     /* arkenfox theme */
     .body_arkenfox, .view_area_arkenfox, .panels_arkenfox
-                                  { background-color: #262626; /*(black)*/
-                                               color: #b3b3b3; /*(gray)*/ }
-    .controls_arkenfox                { background-color: #555555; /*DimGray*/
-                                               color: #C0C0C0; /*Silver*/ }
-    .controls_arkenfox:focus          { outline: 2px auto #FF0000; /*Red*/ }
-    .controls_arkenfox:hover          { background-color: #DAA520; /*GoldenRod*/
-                                               color: #000000; /*Black*/ }
-    .borders_arkenfox           { box-shadow: 3px 3px 4px #FFFFFF; /*White*/
-                                    border: 1px solid #A9A9A9; /*DarkGray*/
-                     border-width: 1px 1px 0px 1px; }
-    .view_area_arkenfox .pref                    { color: #FFFFFF; /*White*/ }
-    .body_arkenfox a                             { color: #ffbf80; /*(brown)*/ }
-    .view_area_arkenfox .false                   { color: #FF6347; /*Tomato*/ }
-    .view_area_arkenfox .true                    { color: #00FF00; /*Lime*/ }
-    .view_area_arkenfox .integer                 { color: #FFFF00; /*Yellow*/ }
-    .view_area_arkenfox .string                  { color: #DDA0DD; /*Plum*/ }
-    .view_area_arkenfox .http                    { color: #99ccff; /*(blue)*/ }
-    .view_area_arkenfox .warn         { background-color: #FF3333; /*(Red)*/
-                                               color: #FFFFFF; /*White*/ }
-    .view_area_arkenfox .hid                     { color: #C6F3C6; /*(Green)*/ }
-    .view_area_arkenfox .ref                     { color: #98E498; /*(Green)*/ }
+                                  { background-color: #161b22;
+                                               color: #b3b3b3; }
+    .controls_arkenfox                { background-color: #161b22;
+                                               color: #b3b3b3; }
+    .controls_arkenfox:focus          { outline: 2px auto #FF0000; }
+    .controls_arkenfox:hover          { background-color: #f0c878;
+                                               color: #000000; }
+    .borders_arkenfox           { /*box-shadow: 3px 3px 4px #808080;*/
+                                    border: 1px solid #b3b3b3;
+                     border-width: 1px 1px 1px 1px; }
+    .view_area_arkenfox .pref                    { color: #ffffff; } /* section header */
+    .body_arkenfox a                             { color: #dcc18c; } /* prefname */
+    .view_area_arkenfox .false                   { color: #dc8c8c; }
+    .view_area_arkenfox .true                    { color: #8cdcc1; }
+    .view_area_arkenfox .integer                 { color: #c1dc8c; }
+    .view_area_arkenfox .string                  { color: #a78cdc; }
+    .view_area_arkenfox .http                    { color: #8ca7dc; } /* a http */
+    .view_area_arkenfox .warn         { background-color: #ff4f4f;
+                                               color: #FFFFFF; }
+    .view_area_arkenfox .hid                     { color: #8cc1dc; }
+    .view_area_arkenfox .ref                     { color: #8cdc8c; } /* id+desc */
 
   </style>
 
@@ -3657,7 +3659,90 @@ function diff( o, n ) {
       }
     }
 
-    function userjsTableViewTagFilter(search_text="") {
+
+    function userjsTableViewWhenArkenfoxRepoMode(theme) {
+
+      if (arkenfoxRepoMode) {
+
+        // add another index button (as original is hidden)
+        document.getElementById("collapse_button").insertAdjacentHTML("beforebegin",
+          '<br><select style="width:5em;" class="controls borders'
+          + ' controls_' + theme + ' borders_' + theme
+          + '" id="index_select_2" '
+          + 'title="Go to section">'
+          + '<option value="" disabled selected hidden>&#x25BE;Index</option>'
+          + '</select>');
+        // make index button have same content as original
+        document.getElementById("index_select_2").innerHTML =
+          document.getElementById("index_select").innerHTML;
+        document.getElementById("index_select_2").addEventListener("change", function() {
+          indexSelectAction(this);
+        });
+
+        document.getElementById("tableview_heading").style.fontSize="120%";
+        if (!(document.getElementById("tableview_heading").innerHTML)) {
+          document.getElementById("tableview_heading").innerHTML=
+            '<h3 style="padding: 0px; margin: 0px; display:inline;">arkenfox user.js ...</h3>';
+        }
+        document.getElementById("tableview_buttons_bar").style.top="1em";
+        // document.getElementById("tableview_buttons_bar").style.backgroundColor="#161b22";
+        // document.getElementById("tableview_buttons_bar").style.opacity="0.8";
+        document.getElementById("jumpback_button").style.display="none";
+        document.getElementById("jumpnext_button").style.display="none";
+        for (const id of [ "index_select_2", "collapse_button", "expand_button",
+          "filter_select", "jumpback_button", "jumpnext_button" ] )
+        {
+          document.getElementById(id).style.marginRight="1em";
+        } 
+        document.getElementById("viewer_slider").style.width="calc(100% - 10em)";
+        document.getElementById("viewer_slider").style.height="1.8em";
+        document.getElementById("viewer_slider").style.marginTop="1em";
+
+        if (arkenfoxRepoMode!="test") {
+          // disable the prefname links
+          var e = document.getElementsByClassName("td_tview_name");
+          for (var i = 0, j = e.length; i < j; i++) {
+            var e2 = e[i].getElementsByTagName("a");
+            for (var i2 = 0, j2 = e2.length; i2 < j2; i2++) {
+              e2[i2].removeAttribute("href");
+            }
+          }
+        }
+
+      }
+
+    } /* end function userjsTableViewWhenArkenfoxRepoMode */
+
+
+    function userjsTableViewUpdateURLBar(textToAdd="",filterType="") {
+      if (filterType=="t") {
+        // tags are already URI encoded
+        textToAdd=textToAdd.replace(/^TAGS_/,"");
+        textToAdd="?t="+textToAdd;
+      }
+      else if (filterType=="s") {
+        textToAdd=encodeURIComponent(textToAdd);
+        textToAdd="?s="+textToAdd;
+      }
+      else if (textToAdd) {
+        textToAdd=encodeURIComponent(textToAdd);
+      }
+      
+      if (getURLVariable("afmode")) {
+        if (textToAdd) {
+          textToAdd=textToAdd.replace(/^\?/,"\?afmode="+(getURLVariable("afmode"))+"\&");
+        }
+        else {
+          textToAdd="?afmode="+(getURLVariable("afmode"));
+        }
+      }
+      // location.protocol + "//" + location.pathname + textToAdd;
+      // https://stackoverflow.com/questions/824349/how-do-i-modify-the-url-without-reloading-the-page
+      // location.search += textToAdd;
+      window.history.replaceState(null, document.title,textToAdd);
+    }
+
+    function userjsTableViewTagFilter(filter_tag="",filter_search="") {
       var s = document.getElementById("filter_select");
       var svalue = s.value;
       s.selectedIndex = 0;
@@ -3689,11 +3774,23 @@ function diff( o, n ) {
         }
       }
 
-      if (search_text) {
-        svalue = "SEARCH";
-        search_regexp = search_text;
+      if ( (filter_tag) && (filter_search) ) {
+        // cannot do both
+        alert("cannot filter for a tag and search text");
+        return;
+      }
+      else if (filter_tag) {
+        svalue = "TAGS_" + encodeURIComponent(filter_tag);
         filteron = svalue;
         hideheadings = true;
+        userjsTableViewUpdateURLBar(svalue,"t");
+      }
+      else if (filter_search) {
+        svalue = "SEARCH";
+        search_regexp = filter_search;
+        filteron = svalue;
+        hideheadings = true;
+        userjsTableViewUpdateURLBar(search_regexp,"s");
       }
       else if (svalue == "SHOWALL") {
         hideinactive = false;
@@ -3701,6 +3798,7 @@ function diff( o, n ) {
         hideheadings = false;
         invert = false;
         filteron = "";
+        userjsTableViewUpdateURLBar("");
       }
       else if (svalue == "HIDEHEADINGS") {
         svalue = "";
@@ -3732,16 +3830,19 @@ function diff( o, n ) {
           search_regexp = new_regexp;
           filteron = svalue;
           hideheadings = true;
+          userjsTableViewUpdateURLBar(search_regexp,"s");
         }
       }
       else if (svalue == filteron) {
         svalue = "SHOWALL";
         filteron = "";
         hideheadings = false;
+        userjsTableViewUpdateURLBar("");
       }
       else {
         filteron = svalue;
         hideheadings = true;
+        userjsTableViewUpdateURLBar(svalue,"t");
       }
 
       // loop through all tr and apply/re-apply filter
@@ -3857,7 +3958,7 @@ function diff( o, n ) {
     // userjsTableView
     ////////////////////////////////////////////////////////
 
-    function userjsTableView(input_box_name,search_text="") {
+    function userjsTableView(input_box_name,filter_tag="",filter_search="") {
 
       var input_box = document.getElementById(input_box_name);
 
@@ -3887,7 +3988,8 @@ function diff( o, n ) {
           'titleflag': false,
           'count': 0
         },
-        'SETUP... (listed below)': {
+        'SETUP': {
+          'option_name': 'SETUP... (listed below)',
           'rx': new RegExp("(\\[SETUP[^\\]]*\\])", "gi"),
           're': '<span class="setup">$1</span>',
           'indicator': '<span class="setup">S</span>',
@@ -3906,7 +4008,8 @@ function diff( o, n ) {
           'count': 0
         },
         // other tags
-        'FF... (listed below)': {
+        'FF': {
+          'option_name': 'FF... (listed below)',
           'rx': new RegExp("(\\[FF[^\\]]*\\])", "gi"),
           're': "",
           'indicator': "F",
@@ -4051,9 +4154,7 @@ function diff( o, n ) {
           else {
             for (var i in tags) {
               tags[i].rx.lastIndex = 0;
-              if (i == "SETUP... (listed below)"
-                || i == "FF... (listed below)"
-              )  {
+              if (i == "SETUP" || i == "FF")  {
                 // pick up these variations (as we only hardcoded them grouped)
                 continue;
               }
@@ -4070,7 +4171,8 @@ function diff( o, n ) {
       // now include the extra tags for detection (add them to tags object)
       for (var i in extraTags) {
         var iv = extraTags[i].replace(/[\[\]]/g, "");
-        tags[iv] = {
+        var iv_encoded = encodeURIComponent(iv);
+        tags[iv_encoded] = {
           'rx': new RegExp("(\\[" + RegExp.escape(iv) + "\\])", "gi"),
           're': "",
           'indicator': "*",
@@ -4081,7 +4183,7 @@ function diff( o, n ) {
         }
         if (new RegExp("^(SETUP|FF).+").test(iv)) {
           // remove the * indicator as these TAGS are in a group too
-          tags[iv].indicator = "";
+          tags[iv_encoded].indicator = "";
         }
       }
 
@@ -4241,8 +4343,7 @@ function diff( o, n ) {
                   if (tags[i].indicator) {
                     prefArray[last_index].info += tags[i].indicator + ' ';
                   }
-                  prefArray[last_index].tagclass += "TAGS_"
-                    + i.replace(/[^A-Za-z0-9_]/g, "__") + " ";
+                  prefArray[last_index].tagclass += "TAGS_" + i + " ";
                   tags[i].count++;
                 }
               }
@@ -4546,8 +4647,7 @@ function diff( o, n ) {
               if (tags[i].indicator) {
                 prefArray[last_index].info += tags[i].indicator + ' ';
               }
-              prefArray[last_index].tagclass += "TAGS_"
-                + i.replace(/[^A-Za-z0-9_]/g, "__") + " ";
+              prefArray[last_index].tagclass += "TAGS_" + i + " ";
               tags[i].count++;
             }
           }
@@ -4576,8 +4676,7 @@ function diff( o, n ) {
           // refresh tag info and add to tagclass/count
           prefArray[last_index].info = "";
           for (var i in tags) {
-            var tagclasstext = "TAGS_"
-              + i.replace(/[^A-Za-z0-9_]/g, "__") + " ";
+            var tagclasstext = "TAGS_" + i + " ";
             var alreadyintagclass = new RegExp(tagclasstext)
               .test(prefArray[last_index].tagclass);
             tags[i].rx.lastIndex = 0;
@@ -4651,7 +4750,7 @@ function diff( o, n ) {
 
       var content_html =
           '<div id="tableview_buttons_bar">'
-        + '<span class="body_' + theme + '">';
+        + '<span id="tableview_heading" class="body_' + theme + '">';
 
       // title eg arkenfox user.js (date) (version)
       if (/^[ \t\\\*]*name[ \t:]*(.*)[ \t]*$/m.test(input_box.value)) {
@@ -4671,26 +4770,27 @@ function diff( o, n ) {
       }
 
       content_html +=
-          '</span><br>'
+
+        '</span><br>'
 
         // collapse all button
         + '<button type="button" style="width:2em;" class="controls borders'
         + ' controls_' + theme + ' borders_' + theme
-        + '" onclick="userjsTableViewCollapseAll();"'
+        + '" id="collapse_button" onclick="userjsTableViewCollapseAll();"'
         + ' title="Collapse All Descriptions"><b>-</b></button>'
 
         // expand all button
         + '<button type="button" style="width:2em;" class="controls borders'
         + ' controls_' + theme + ' borders_' + theme
-        + '" onclick="userjsTableViewExpandAll();"'
-        + ' ondblclick="userjsTableViewExpandPrefDesc();"'
+        + '" id="expand_button" onclick="userjsTableViewExpandPrefDesc();"'
+        + ' ondblclick="userjsTableViewExpandAll();"'
         + ' title="Expand All Descriptions (single/double click)"><b>+</b></button>'
 
         // filter button select
         + '<select style="width:8em;" class="controls borders'
         + ' controls_' + theme + ' borders_' + theme
         + '" id="filter_select" onchange="userjsTableViewTagFilter();" '
-        + 'title="Filter tags (multiple choice)">'   // multiple
+        + 'title="Filter tags/text">'
         + '  <option value="" disabled selected hidden>&#x25BE;&#x00A0;&#x25A2;&#x00A0;Filter</option>'
         + '  <option value="SHOWALL">Show all (clear filter)'
         + '&#x00A0;&#x00A0;&#x00A0;&#x00A0;(' + stats["total"].count + ')</option>'
@@ -4711,14 +4811,15 @@ function diff( o, n ) {
       // add tags to filter select (and show indicator/key plus counts)
       for (var i in tags) {
         if (tags[i].count > 0) {
-          content_html += '  <option value="' + "TAGS_"
-            + i.replace(/[^A-Za-z0-9_]/g, "__")
+          content_html += '  <option value="' + "TAGS_" + i
             + '">&#x25A2;&#x00A0;&#x00A0;';
           if (tags[i].indicator) {
             content_html += tags[i].indicator
               + '&#x00A0;&#x00A0;-&#x00A0;&#x00A0;';
           }
-          content_html += i + '&#x00A0;&#x00A0;&#x00A0;&#x00A0;('
+          content_html +=
+            ((tags[i].option_name) ? tags[i].option_name : decodeURIComponent(i))
+            + '&#x00A0;&#x00A0;&#x00A0;&#x00A0;('
             + tags[i].count + ')</option>';
         }
       }
@@ -4736,14 +4837,12 @@ function diff( o, n ) {
         + ' controls_' + theme + ' borders_' + theme
         + '" style="width:2em;margin-right:0.5em;" '
         + 'title="Jump to next section">&#9660;</button>'
-
         // navigation: viewer_slider
         + '<input type="range" min="0" max="50" value="0" id="viewer_slider">'
-
-        + '</div>'
+        + '</div>\n'
         + '<div style="width: 100%;" id="tableview_div">'
-        + '<br><br><br><br>'
-        + '(see [Filter] button for Info key, and other * tags)'
+        + '<br><br><br><br>\n'
+        + '(see [Filter] button for Info key)'
         + ' (click <details style="display:inline;">'
         + '<summary style="cursor:text;"></summary></details>to expand)<br>\n';
 
@@ -4910,7 +5009,7 @@ function diff( o, n ) {
       content_html += '</table>';
       // bottom anchor
       sectionCount++;
-      content_html += '<span class="anchor" id="' + sectionCount + '"></span>'
+      content_html += '<span class="anchor" id="' + sectionCount + '"></span>';
       index_select_html += '<option value="' + sectionCount
         + '">(BOTTOM)</option>\n';
 
@@ -5001,10 +5100,12 @@ function diff( o, n ) {
       // refresh as per UI settings
       togglePrefixAboutConfigLinks("refresh");
       if (toggleExpandAllOnView("status")) { userjsTableViewExpandAll(true); }
-      if (search_text) {
-        userjsTableViewTagFilter(search_text);
+      if ( (filter_tag) || (filter_search) ) {
+        userjsTableViewTagFilter(filter_tag,filter_search);
       }
       if (toggleGroupsOnView("status")) { toggleGroupsPanel(true); }
+
+      userjsTableViewWhenArkenfoxRepoMode(theme);
 
     } /* end function userjsTableView */
 
@@ -5708,8 +5809,6 @@ function diff( o, n ) {
     }
 
 
-
-
     // *************************************
     // handleActionURLparameter
     // *************************************
@@ -5876,11 +5975,25 @@ function diff( o, n ) {
 
     function userjstoolSetupURLvariables() {
 
-      if (getURLVariable("theme")) {
-        applyTheme(getURLVariable("theme"));
-      }
-      else if (/^https:\/\/arkenfox\.github\.io\//.test(location)) {
+      if (arkenfoxRepoMode) {
         applyTheme("arkenfox");
+        if (getURLVariable("theme")) {
+          applyTheme(getURLVariable("theme"));
+        }
+        applyFontSize("85");
+        if (arkenfoxRepoMode=="test") {
+          document.getElementById("top_buttons_bar").style.right="1em";
+          document.getElementById("top_buttons_bar").style.zIndex = 1000;
+        }
+        else {
+          document.getElementById("top_buttons_bar").style.display="none";
+        }
+        // for (const id of [ "groups_button","size_select","menu_select","back_button" ]) {
+        //   document.getElementById(id).style.display="none";
+        // }
+      }
+      else if (getURLVariable("theme")) {
+        applyTheme(getURLVariable("theme"));
       }
       else {
         applyTheme("default");
@@ -5940,42 +6053,47 @@ function diff( o, n ) {
     // userjstoolSetupEventListeners
     // *************************************
 
+    function indexSelectAction(element) {
+      // expand, focus, and scroll to the chosen section
+      var id = element.value;
+      // make the select element show first choice (button title)
+      element.selectedIndex = 0;
+      element.blur();
+      if (id) {
+        if (
+          /(compare_div|tableview_div)/
+          .test(document.getElementById("view_area").innerHTML)
+        ) {
+          /* for compare or tableview */
+          document.getElementById("viewer_slider").value = id;
+          if (id == 0) {
+            scroll(0,0);
+          }
+          else {
+            document.getElementById(id).scrollIntoView();
+          }
+        }
+        else {
+          var e = document.getElementById(id);
+          if (e) {
+            e.nextElementSibling.style.display = "block";
+            section_focus = e;
+            refocusSection();
+          }
+          else if (id == "(TOP) / Introduction") {
+            scroll(0,0);
+          }
+        }
+      }
+    }
+
+
     function userjstoolSetupEventListeners() {
 
       /* index_select (jump to section) */
 
       document.getElementById("index_select").addEventListener("change", function() {
-        // expand, focus, and scroll to the chosen section
-        var id = document.getElementById("index_select").value;
-        // make the select element show first choice (button title)
-        this.selectedIndex = 0;
-        this.blur();
-        if (id) {
-          if (
-            /(compare_div|tableview_div)/
-            .test(document.getElementById("view_area").innerHTML)
-          ) {
-            /* for compare or tableview */
-            document.getElementById("viewer_slider").value = id;
-            if (id == 0) {
-              scroll(0,0);
-            }
-            else {
-              document.getElementById(id).scrollIntoView();
-            }
-          }
-          else {
-            var e = document.getElementById(id);
-            if (e) {
-              e.nextElementSibling.style.display = "block";
-              section_focus = e;
-              refocusSection();
-            }
-            else if (id == "(TOP) / Introduction") {
-              scroll(0,0);
-            }
-          }
-        }
+        indexSelectAction(this);
       });
 
       /* groups button */
@@ -6615,6 +6733,27 @@ function diff( o, n ) {
     }  /* end function userjstoolSetupEventListeners */
 
 
+    function userjstoolWhenArkenfoxRepoMode() {
+      if (getURLVariable("afmode")=="off") {
+        arkenfoxRepoMode="";
+      }
+      else if (getURLVariable("afmode")=="demo"
+        || getURLVariable("afmode")=="test"
+      ) {
+        arkenfoxRepoMode=getURLVariable("afmode");
+      }
+      else if (
+        /^https:\/\/arkenfox\.github\.io\//.test(location)
+        || (getURLVariable("afmode")=="on")
+      ) {
+        arkenfoxRepoMode="on";
+        // note for testing: to fetch local file:// in about:config
+        // temporarily disable "security.fileuri.strict_origin_policy"
+      }
+      if (arkenfoxRepoMode) {
+        document.title="arkenfox user.js";
+      }
+    } /* end function userjstoolWhenArkenfoxRepoMode */
 
 
     // *************************************
@@ -6626,6 +6765,7 @@ function diff( o, n ) {
     function userjstoolStart() {
 
       userjstoolSetupInital();
+      userjstoolWhenArkenfoxRepoMode();
       userjstoolSetupEventListeners();
       userjstoolSetupURLvariables();
       toggleActionsPanel(true);
@@ -6655,25 +6795,24 @@ function diff( o, n ) {
       // if load parameters in URL
       if (/^\?(a|av|at|g|gv|gt)($|&)/.test(location.search)) {
         toggleTemplateDiv();
-        if (/^https:\/\/arkenfox\.github\.io\//.test(location)) {
-          downloadFile(
-            "https://arkenfox.github.io/user.js/user.js",
-            "box_1_template");
-        }
-        else {
+        downloadFile(
+          "https://raw.githubusercontent.com/arkenfox/user.js/master/user.js",
+          "box_1_template");
+        timeoutDelay = true;
+      }
+      else if ( (arkenfoxRepoMode) && !(getURLVariable("load1")) ) {
+        // autoload user.js when this html location is an arkenfox repo
+        toggleTemplateDiv();
+        toggleActionsPanel(false);
+        userjsTableView("box_1_template");
+        if (arkenfoxRepoMode=="demo" || arkenfoxRepoMode=="test") {
           downloadFile(
             "https://raw.githubusercontent.com/arkenfox/user.js/master/user.js",
             "box_1_template");
         }
-        timeoutDelay = true;
-      }
-      if (/^https:\/\/arkenfox\.github\.io\/.*\.html$/.test(location)) {
-        // autoload user.js when this html location is an arkenfox repo
-        // and no additional parameters given
-        toggleTemplateDiv();
-        downloadFile(
-          "https://arkenfox.github.io/user.js/user.js",
-          "box_1_template");
+        else {
+          downloadFile("user.js", "box_1_template");
+        }
         timeoutDelay = true;
       }
       if (getURLVariable("load4") != "" && getURLVariable("load4") != null) {
@@ -6708,15 +6847,13 @@ function diff( o, n ) {
           document.getElementById("view_template_button").click();
         }
         else if ( (/^\?(at|gt)($|&)/.test(location.search))
-          || (/^https:\/\/arkenfox\.github\.io\/.*\.html$/.test(location))
-          || (/^https:\/\/arkenfox\.github\.io\/.*\.html/.test(location)
-             && /^\?s=/.test(location.search))
+          || (arkenfoxRepoMode)
         ) {
           // document.getElementById("tableview_template_button").click();
           if ( !(document.getElementById("box_1_template").value == "") ) {
             toggleTextAreaReadOnly("box_1_template", true);
             toggleActionsPanel(false);
-            userjsTableView("box_1_template",getURLVariable("s"));
+            userjsTableView("box_1_template",getURLVariable("t"),getURLVariable("s"));
           }
         }
 
@@ -7463,7 +7600,7 @@ an extension such as: uBlock Origin, uMatrix, NoScript.<br>
 <br>
 Interactive view, compare, and more for Firefox user.js (eg arkenfox user.js).<br>
 <br>
-Version&nbsp;&nbsp;&nbsp;: 2022.03.20 (alpha/experimental)<br>
+Version&nbsp;&nbsp;&nbsp;: 2022.04.01 (alpha/experimental)<br>
 
 Project&nbsp;&nbsp;&nbsp;:
 <a target="_blank" rel="external noopener noreferrer"
