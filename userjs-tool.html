@@ -13,7 +13,7 @@
 
        Name         : userjs-tool.html
        Project      : https://github.com/icpantsparti2/firefox-user.js-tool
-       Version      : 2022.04.01 (alpha/experimental)
+       Version      : 2022.04.02 (alpha/experimental)
        File         : https://raw.githubusercontent.com/icpantsparti2/firefox-user.js-tool/master/userjs-tool.html
        On-line      : https://icpantsparti2.github.io/firefox-user.js-tool/userjs-tool.html
        License (MIT): https://raw.githubusercontent.com/icpantsparti2/firefox-user.js-tool/master/LICENSE
@@ -3666,7 +3666,7 @@ function diff( o, n ) {
 
         // add another index button (as original is hidden)
         document.getElementById("collapse_button").insertAdjacentHTML("beforebegin",
-          '<br><select style="width:5em;" class="controls borders'
+          '<br><select style="width:8em;" class="controls borders'
           + ' controls_' + theme + ' borders_' + theme
           + '" id="index_select_2" '
           + 'title="Go to section">'
@@ -3679,27 +3679,50 @@ function diff( o, n ) {
           indexSelectAction(this);
         });
 
+        // increase heading size (and show placeholder text)
         document.getElementById("tableview_heading").style.fontSize="120%";
         if (!(document.getElementById("tableview_heading").innerHTML)) {
           document.getElementById("tableview_heading").innerHTML=
             '<h3 style="padding: 0px; margin: 0px; display:inline;">arkenfox user.js ...</h3>';
         }
-        document.getElementById("tableview_buttons_bar").style.top="1em";
-        // document.getElementById("tableview_buttons_bar").style.backgroundColor="#161b22";
-        // document.getElementById("tableview_buttons_bar").style.opacity="0.8";
+
+        // rename the collapse/expand details buttons (was [-] [+])
+        document.getElementById("collapse_button").innerHTML="Collapse";
+        document.getElementById("expand_button").innerHTML="Expand";
+        document.getElementById("collapse_button").style.width="8em";
+        document.getElementById("expand_button").style.width="8em";
+
+        // top bar opaque and re-size
+        document.getElementById("tableview_buttons_bar").style.backgroundColor="#161b22";
+        document.getElementById("tableview_buttons_bar").style.top="0";
+        document.getElementById("tableview_buttons_bar").style.width="100%";
+        document.getElementById("tableview_buttons_bar").style.padding="1em 0 1em 0";
+        document.getElementById("tableview_buttons_bar").style.height="5em";
+
+        // adjust offsets (for preventing content hidden behind top bar)
+        document.getElementById("body_offset").innerHTML="";
+        document.getElementById("tableview_offset").innerHTML="";
+        document.getElementById("tableview_div").style.marginTop="8em";
+        var e = document.getElementsByClassName("anchor");
+        for (var i = 0, j = e.length; i < j; i++) {
+          e[i].style.marginTop="-8em";
+          e[i].style.paddingBottom="8em";
+        }
+
+        // hide section jump buttons and slider
         document.getElementById("jumpback_button").style.display="none";
         document.getElementById("jumpnext_button").style.display="none";
+        document.getElementById("viewer_slider").style.display="none";
+
+        // add button spacing
         for (const id of [ "index_select_2", "collapse_button", "expand_button",
           "filter_select", "jumpback_button", "jumpnext_button" ] )
         {
           document.getElementById(id).style.marginRight="1em";
         } 
-        document.getElementById("viewer_slider").style.width="calc(100% - 10em)";
-        document.getElementById("viewer_slider").style.height="1.8em";
-        document.getElementById("viewer_slider").style.marginTop="1em";
 
+        // disable the prefname links
         if (arkenfoxRepoMode!="test") {
-          // disable the prefname links
           var e = document.getElementsByClassName("td_tview_name");
           for (var i = 0, j = e.length; i < j; i++) {
             var e2 = e[i].getElementsByTagName("a");
@@ -4839,9 +4862,9 @@ function diff( o, n ) {
         + 'title="Jump to next section">&#9660;</button>'
         // navigation: viewer_slider
         + '<input type="range" min="0" max="50" value="0" id="viewer_slider">'
-        + '</div>\n'
+        + '</div>'
         + '<div style="width: 100%;" id="tableview_div">'
-        + '<br><br><br><br>\n'
+        + '<div id="tableview_offset"><br><br><br><br></div>'
         + '(see [Filter] button for Info key)'
         + ' (click <details style="display:inline;">'
         + '<summary style="cursor:text;"></summary></details>to expand)<br>\n';
@@ -5982,6 +6005,7 @@ function diff( o, n ) {
         }
         applyFontSize("85");
         if (arkenfoxRepoMode=="test") {
+          document.getElementById("top_buttons_bar").style.top="1em";
           document.getElementById("top_buttons_bar").style.right="1em";
           document.getElementById("top_buttons_bar").style.zIndex = 1000;
         }
@@ -7002,7 +7026,7 @@ title="Close panel" onclick="backButton();"><b>&lt;</b>Back</button>
      top of body / view_area
      ************************************* -->
 
-<br><br><br><br>
+<div id="body_offset"><br><br><br><br></div>
 <div id="collect_mode_pad"><br><br><br><br><br><br><br><br><br><br><br><br><br>
 <br>Note: a very basic overrides collector, click value/"user_pref" to toggle.<br>
 You can also edit box 2 above, and don't forget to save what you do.<br><br></div>
@@ -7600,7 +7624,7 @@ an extension such as: uBlock Origin, uMatrix, NoScript.<br>
 <br>
 Interactive view, compare, and more for Firefox user.js (eg arkenfox user.js).<br>
 <br>
-Version&nbsp;&nbsp;&nbsp;: 2022.04.01 (alpha/experimental)<br>
+Version&nbsp;&nbsp;&nbsp;: 2022.04.02 (alpha/experimental)<br>
 
 Project&nbsp;&nbsp;&nbsp;:
 <a target="_blank" rel="external noopener noreferrer"
