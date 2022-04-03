@@ -1,4 +1,11 @@
-version 2022.04.01  userjs-tool.html
+version 2022.04.02 2022.04.01  userjs-tool.html
+* 2022.04.02:
+  * tweaked the arkenfox repo mode demo
+    * make top bar opaque and full width
+    * adjust offsets so content does not hide behind top bar
+    * rename [-] [+] buttons to [Collapse] [Expand] (re <details> elements)
+    - hide the section jump slider
+* 2022.04.01:
   + add arkenfox repo mode
     if userjs-tool.html is run from a copy.html on an arkenfox repo:
     auto loads a file on that same repo called user.js
