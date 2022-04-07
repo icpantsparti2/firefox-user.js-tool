@@ -24,7 +24,7 @@ Display a Mozilla Firefox user.js settings file contents in your Firefox browser
 * actions including: user-overrides.js* append* (with comment-out*), point and click overrides collector, skeleton, prefs.js cleaner*, group by values
 * load/save, drag/drop, or copy/paste user.js files (can load from some on-line URLs too)
 * functions for find (filter/list)/reset/set on about:config Web Console (Firefox/forks/Thunderbird/SeaMonkey)
-* single .html file (HTML/CSS/JavaScript) with no external dependency
+* This is coded in HTML/CSS/JavaScript with no cross domain dependency
 * open [userjs-tool.html on-line](https://icpantsparti2.github.io/firefox-user.js-tool/userjs-tool.html) or save for off-line use
 
 (*arkenfox/user.js inspired.  Please visit [arkenfox/user.js](https://github.com/arkenfox/user.js) and read their info on [arkenfox/user.js/wiki](https://github.com/arkenfox/user.js/wiki). They also have nice scripts for append/clean/troubleshoot.)
@@ -39,8 +39,7 @@ Disclaimer: Use with care at your own risk, and verify any results
 
 <details><summary><b>(Optional) How to save and open <code>userjs-tool.html</code> off-line</b></summary><br>
 
-* Open [the raw text/html file](https://raw.githubusercontent.com/icpantsparti2/firefox-user.js-tool/master/userjs-tool.html) in a browser tab
-* Right click within that page and "Save Page As..."
+* Click the Code button on this repo and Download ZIP (https://github.com/icpantsparti2/firefox-user.js-tool/archive/refs/heads/master.zip)
 * Open the saved `userjs-tool.html` file with your Firefox browser  
 (you can drag and drop it from your Downloads folder into a new tab)
 * Bookmark it for easy access
@@ -51,8 +50,6 @@ Disclaimer: Use with care at your own risk, and verify any results
 </details>
 
 <details><summary><b>Other Info</b></summary>
-
-* (Optional) The `userjs-tool-themes.css` file can be used with `userjs-tool.html` to add custom themes/colors (or override the default)
 
 * The `userjs-tool-aboutconfig-functions.js` file is also embeded in `userjs-tool.html` (view with the [a:c Functions] button).
 
