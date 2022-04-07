@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="height=device-height, width=device-width,
+    initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,
+    user-scalable=no, target-densitydpi=device-dpi, shrink-to-fit=no">
+  <!-- <style>* {-webkit-text-size-adjust: none}</style> -->
+
+  <!-- *************************************
+       Project      : https://github.com/arkenfox/user.js
+       On-line gui  : https://arkenfox.github.io/gui
+       License (MIT): https://raw.githubusercontent.com/arkenfox/gui/main/LICENSE
+       Version      : 2022.04.06
+       *************************************
+       this uses a selection of css and js files from:
+       https://github.com/icpantsparti2/firefox-user.js-tool
+       *************************************
+       https://arkenfox.github.io/gui      uses hardcoded user.js (userjs-base64.js)
+                                           (if nothing hardcoded fetches main instead)
+       https://arkenfox.github.io/gui?u    list urls (from in hardcoded user.js)
+       https://arkenfox.github.io/gui?a    fetch main and display gui
+       https://arkenfox.github.io/gui?b    fetch main for creating "userjs-base64.js"
+       ************************************* -->
+
+  <link rel="stylesheet" type="text/css" href="css/userjs-tool.css" />
+  <link rel="stylesheet" type="text/css" href="css/userjs-tool-themes.css" />
+  <script type="text/javascript" src="js/userjs-tool-common.js"></script>
+  <script type="text/javascript" src="js/userjs-tool-userjs-table-view.js"></script>
+  <script type="text/javascript" src="js/userjs-tool-af-mode.js"></script>
+  <script type="text/javascript" src="userjs-base64.js"></script>
+  <title>arkenfox gui</title>
+</head>
+<body onload="arkenfoxGUIStart('userjs_textarea')" class="body_arkenfox">
+
+<div id="javascript_required">
+Hi! This requires JavaScript for dynamically rendering the HTML interface.<br>
+<br>
+If you see this message perhaps JavaScript is off, or controlled by an extension.
+</div>
+
+<textarea id="about_textarea" style="display:none;">
+Welcome to the <b>arkenfox gui</b>.  This helps you to explore the
+information from the <b>arkenfox user.js</b>, a template configuration
+file that can control Firefox settings.  You can visit the project,
+obtain the file, and read the Wiki at
+<a target="_blank" rel="external noopener noreferrer" class="http"
+href="https://github.com/arkenfox/user.js">https://github.com/arkenfox/user.js</a>
+</textarea>
+
+<textarea id="userjs_textarea" style="display:none;"></textarea>
+
+</body>
+<script type="text/javascript">
+  document.getElementById("javascript_required").style.display='none';
+  if (typeof userjsbase64==="string") {
+    document.getElementById('userjs_textarea').value=b64DecodeUnicode(userjsbase64);
+  }
+</script>
+</html>
