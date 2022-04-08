@@ -1,3 +1,12 @@
+version 2022.04.07 2022.04.06  userjs-tool.html
+* 2022.04.07
+  * code tweaks (improvements for afmode/arkenfox gui)
+* 2022.04.06
+  * split html into html/css/js files
+
+
+
+
 version 2022.04.02 2022.04.01  userjs-tool.html
 * 2022.04.02:
   * tweaked the arkenfox repo mode demo
