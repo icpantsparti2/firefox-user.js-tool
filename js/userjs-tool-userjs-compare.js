@@ -2,7 +2,7 @@
 // Project      : https://github.com/icpantsparti2/firefox-user.js-tool
 // On-line      : https://icpantsparti2.github.io/firefox-user.js-tool/userjs-tool.html
 // License (MIT): https://raw.githubusercontent.com/icpantsparti2/firefox-user.js-tool/master/LICENSE
-// Version      : 2022.04.06
+// Version      : 2022.04.07
 
     // *************************************
     // userjsCompareLauncher
@@ -122,7 +122,7 @@
         + '" style="width:1.9em;min-width:1.9em;margin-right:0.5em;" '
         + 'title="Jump to next section">&#9660;</button>'
 
-        + '<input type="range" id="viewer_slider" min="0" max="50" value="0">'
+        + '<input type="range" id="tview_slider" min="0" max="50" value="0">'
         + '</div>'
         + '<div style="width: 100%;" id="compare_div">'
 
@@ -948,7 +948,7 @@
             id = i + 1;
           }
         }
-        document.getElementById("viewer_slider").value = id;
+        document.getElementById("tview_slider").value = id;
         if (id == 0) {
           scroll(0,0);
         }
@@ -969,7 +969,7 @@
             id = i + 2;
           }
         }
-        document.getElementById("viewer_slider").value = id;
+        document.getElementById("tview_slider").value = id;
         if (id == 0) {
           scroll(0,0);
         }
@@ -979,9 +979,9 @@
       });
 
       // slider
-      document.getElementById("viewer_slider").max = sectionCount;
+      document.getElementById("tview_slider").max = sectionCount;
       for (const event of [ "input", "click" ]) {
-        document.getElementById("viewer_slider").addEventListener(event, function() {
+        document.getElementById("tview_slider").addEventListener(event, function() {
           if (this.value == 0) {
             scroll(0,0);
           }
@@ -996,7 +996,7 @@
       for (var i = 0, j = e.length; i<j; i++) {
         e[i].addEventListener("click", function() {
           var id = this.id.replace(/^.*#$/, "0").replace(/^.*#/, "");
-          document.getElementById("viewer_slider").value = id;
+          document.getElementById("tview_slider").value = id;
           if (id == 0) {
             scroll(0,0);
           }
