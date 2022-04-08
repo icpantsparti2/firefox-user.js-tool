@@ -4,9 +4,13 @@
 
 Interactive view, compare, and more for Firefox user.js (eg arkenfox/user.js) + about:config functions
 
-[Open userjs-tool.html on-line (github.io)](https://icpantsparti2.github.io/firefox-user.js-tool/userjs-tool.html)
+* [Open userjs-tool.html on-line (github.io)](https://icpantsparti2.github.io/firefox-user.js-tool/userjs-tool.html)
 
-[View the current <i>arkenfox user.js</i>* in a table (github.io)](https://icpantsparti2.github.io/firefox-user.js-tool/userjs-tool.html?at)
+View the current <i>arkenfox user.js</i>* in a table (github.io):
+
+* https://icpantsparti2.github.io/firefox-user.js-tool/arkenfox-gui.html
+* https://arkenfox.github.io/gui
+* https://icpantsparti2.github.io/firefox-user.js-tool/userjs-tool.html?at
 
 [Functions to get more out of about:config (eg: find, filter, list, save to file, etc)](https://raw.githubusercontent.com/icpantsparti2/firefox-user.js-tool/master/userjs-tool-aboutconfig-functions.js)
 
