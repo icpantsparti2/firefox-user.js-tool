@@ -1,4 +1,7 @@
-version 2022.04.07 2022.04.06  userjs-tool.html
+version 2022.04.07 2022.04.07 2022.04.06  userjs-tool.html
+* 2022.04.08
+  * added icons to the table view info column
+    (replaces the indicator letters)
 * 2022.04.07
   * code tweaks (improvements for afmode/arkenfox gui)
 * 2022.04.06
