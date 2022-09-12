@@ -1,3 +1,17 @@
+version 2022.09.11  userjs-tool-userjs-table-view.js
+* various minor tweaks of v2022.04.09, mainly:
+  * tweak regex to cope with ID indent in arkenfox section 9999
+    eg also cope with "   // 0901: " (instead of just "// 0901: ")
+  * add some TODO notes:
+    // TODO: code improvements:
+    // TODO: https://github.com/arkenfox/gui/issues/2#issuecomment-1159625494
+    // TODO: https://github.com/arkenfox/gui/issues/2#issuecomment-1159626088
+    // TODO look into concat of pref desc:
+    // TODO https://github.com/arkenfox/gui/issues/5
+
+
+
+
 version 2022.04.07 2022.04.07 2022.04.06  userjs-tool.html
 * 2022.04.08
   * added icons to the table view info column
